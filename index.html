@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>srcnav — Code Navigation for AI Agents</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hero Section with Terminal Animation -->
+    <section class="hero-terminal" id="hero">        
+        <div class="japanese-decor left">ソースナビゲーター</div>
+        <div class="japanese-decor right">コード検索</div>
+        
+        <div class="terminal-wrapper">
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="terminal-title">srcnav — bash</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-content">
+                        <div class="terminal-frame" id="frame-index">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-target" data-cmd="srcnav index -p ./my-project"></span><span class="cursor">▋</span></div>
+                        </div>
+                        <div class="terminal-frame" id="frame-index-done">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd">srcnav index -p ./my-project</span></div>
+                            <div class="line output">> Scanning files...</div>
+                            <div class="line output">> <span class="progress-bar"><span class="progress-fill" id="index-progress"></span></span> <span class="progress-text" id="index-progress-text">0%</span> — 0 / 4,435 files</div>
+                        </div>
+                        <div class="terminal-frame" id="frame-index-complete">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd">srcnav index -p ./my-project</span></div>
+                            <div class="line output">> Scanning files...</div>
+                            <div class="line output">> <span class="progress-bar"><span class="progress-fill" style="width: 100%"></span></span> <span class="progress-text">100%</span> — 4,435 / 4,435 files</div>
+                            <div class="line output">> Indexing symbols...</div>
+                            <div class="line success">> Done: 61,583 symbols indexed in 2.3s</div>
+                        </div>
+                        <div class="terminal-frame" id="frame-find">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-target" data-cmd="srcnav find &quot;createUser&quot; --kind Function"></span><span class="cursor">▋</span></div>
+                        </div>
+                        <div class="terminal-frame" id="frame-find-done">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd">srcnav find "createUser" --kind Function</span></div>
+                            <div class="line output">> Found 12 definitions in 43ms</div>
+                            <div class="line output">src/auth.ts:42 — createUser (function)</div>
+                            <div class="line output">src/users.ts:18 — createUser (function)</div>
+                            <div class="line output">src/api/auth.ts:31 — createUser (function)</div>
+                            <div class="line output text-dim">... and 9 more</div>
+                        </div>
+                        <div class="terminal-frame" id="frame-query-search">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-target" data-cmd="srcnav query search &quot;auth&quot;"></span><span class="cursor">▋</span></div>
+                        </div>
+                        <div class="terminal-frame" id="frame-query-search-done">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd">srcnav query search "auth"</span></div>
+                            <div class="line output">> Found 23 files in 12ms</div>
+                            <div class="line output">src/auth/login.ts</div>
+                            <div class="line output">src/auth/middleware.ts</div>
+                            <div class="line output">src/api/auth-guard.ts</div>
+                        </div>
+                        <div class="terminal-frame" id="frame-query-context">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-target" data-cmd="srcnav query context src/utils/format.ts"></span><span class="cursor">▋</span></div>
+                        </div>
+                        <div class="terminal-frame" id="frame-query-context-done">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd">srcnav query context src/utils/format.ts</span></div>
+                            <div class="line output">> 8 symbols found in 8ms</div>
+                            <div class="line output">formatDate (function) — line 12</div>
+                            <div class="line output">formatCurrency (function) — line 28</div>
+                        </div>
+                        <div class="terminal-frame" id="frame-query-deps">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-target" data-cmd="srcnav query dependencies-of src/utils/format.ts"></span><span class="cursor">▋</span></div>
+                        </div>
+                        <div class="terminal-frame" id="frame-query-deps-done">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd">srcnav query dependencies-of src/utils/format.ts</span></div>
+                            <div class="line output">> 15 files depend on this file</div>
+                            <div class="line output">src/components/Price.tsx</div>
+                            <div class="line output">src/services/billing.ts</div>
+                        </div>
+                        <div class="terminal-frame" id="frame-impact">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-target" data-cmd="srcnav analyze impact &quot;updatePrice&quot;"></span><span class="cursor">▋</span></div>
+                        </div>
+                        <div class="terminal-frame" id="frame-impact-done">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd">srcnav analyze impact "updatePrice"</span></div>
+                            <div class="line output">> Analyzing dependencies...</div>
+                            <div class="line success">> 47 items affected:</div>
+                            <div class="line output impact-indent">├── 12 direct callers</div>
+                            <div class="line output impact-indent">├── 23 indirect dependencies</div>
+                            <div class="line output impact-indent">└── 12 test files</div>
+                        </div>
+                        <div class="terminal-frame" id="frame-stats">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-target" data-cmd="srcnav stats"></span><span class="cursor">▋</span></div>
+                        </div>
+                        <div class="terminal-frame" id="frame-stats-done">
+                            <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd">srcnav stats</span></div>
+                            <div class="line output">══════════════════════════════</div>
+                            <div class="line output">Symbols: 61,583</div>
+                            <div class="line output">Functions: 8,432</div>
+                            <div class="line output">Classes: 2,156</div>
+                            <div class="line output">══════════════════════════════</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-overlay">
+            <h1 class="hero-title"><span class="brand">srcnav</span></h1>
+            <p class="hero-description">Code Navigation for AI Agents<br>400x better signal-to-noise. 93x faster.</p>
+            <a href="#who-for" class="btn">See How It Works</a>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Short Who For Bar -->
+    <section class="who-for-short" id="who-for">
+        <p>For <span class="brand-highlight">Vibe Coders</span>. For <span class="brand-highlight">Software Developers</span>. For <span class="brand-highlight">AI Builders</span>.</p>
+    </section>
+
+    <!-- Split Screen Comparison -->
+    <main class="split-screen" id="comparison">
+        <div class="side without">
+            <div class="side-content">
+                <section class="side-hero">
+                    <div class="side-badge">WITHOUT</div>
+                    <h1>grep</h1>
+                    <p class="side-tagline">Traditional string matching</p>
+                    <div class="side-stats">
+                        <div class="stat"><span class="stat-num">20k+</span><span class="stat-label">matches for "create"</span></div>
+                        <div class="stat"><span class="stat-num">~4s</span><span class="stat-label">query time</span></div>
+                        <div class="stat"><span class="stat-num">15k</span><span class="stat-label">avg tokens/query</span></div>
+                        <div class="stat"><span class="stat-num">strings</span><span class="stat-label">what it finds</span></div>
+                    </div>
+                    <div class="terminal side-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dots-mini"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-content-mini">
+                                <div class="frame-mini frame-mini-grep" id="frame-grep-1">
+                                    <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-grep" data-cmd="grep -r &quot;create&quot; ."></span><span class="cursor">▋</span></div>
+                                </div>
+                                <div class="frame-mini frame-mini-grep" id="frame-grep-2">
+                                    <div class="line prompt"><span class="prompt-char">$</span> grep -r "create" .</div>
+                                    <div class="line output">20,077 matches</div>
+                                </div>
+                                <div class="frame-mini frame-mini-grep" id="frame-grep-3">
+                                    <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-grep" data-cmd="grep -r &quot;function&quot; ."></span><span class="cursor">▋</span></div>
+                                </div>
+                                <div class="frame-mini frame-mini-grep" id="frame-grep-4">
+                                    <div class="line prompt"><span class="prompt-char">$</span> grep -r "function" .</div>
+                                    <div class="line output">45,230 matches</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="side-section">
+                    <h2>Limitations</h2>
+                    <ul class="problem-list">
+                        <li>Matches everything with the string</li>
+                        <li>No concept of definitions vs usage</li>
+                        <li>No dependency tracking</li>
+                        <li>No impact analysis</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <div class="side with">
+            <div class="side-content">
+                <section class="side-hero">
+                    <div class="side-badge">WITH</div>
+                    <h1>srcnav</h1>
+                    <p class="side-tagline">Semantic code navigation</p>
+                    <div class="side-stats">
+                        <div class="stat"><span class="stat-num">50</span><span class="stat-label">definitions for "create"</span></div>
+                        <div class="stat"><span class="stat-num">~43ms</span><span class="stat-label">query time</span></div>
+                        <div class="stat"><span class="stat-num">500</span><span class="stat-label">avg tokens/query</span></div>
+                        <div class="stat"><span class="stat-num">semantic</span><span class="stat-label">what it finds</span></div>
+                    </div>
+                    <div class="terminal side-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dots-mini"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-content-mini">
+                                <div class="frame-mini frame-mini-srcnav" id="frame-srcnav-1">
+                                    <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-srcnav" data-cmd="srcnav find &quot;createUser&quot;"></span><span class="cursor">▋</span></div>
+                                </div>
+                                <div class="frame-mini frame-mini-srcnav" id="frame-srcnav-2">
+                                    <div class="line prompt"><span class="prompt-char">$</span> srcnav find "createUser"</div>
+                                    <div class="line output">> Found 12 definitions</div>
+                                    <div class="line output">> 43ms</div>
+                                </div>
+                                <div class="frame-mini frame-mini-srcnav" id="frame-srcnav-3">
+                                    <div class="line prompt"><span class="prompt-char">$</span> <span class="cmd typing-srcnav" data-cmd="srcnav query search &quot;auth&quot;"></span><span class="cursor">▋</span></div>
+                                </div>
+                                <div class="frame-mini frame-mini-srcnav" id="frame-srcnav-4">
+                                    <div class="line prompt"><span class="prompt-char">$</span> srcnav query search "auth"</div>
+                                    <div class="line output">> Found 23 files</div>
+                                    <div class="line output">> 12ms</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="side-section">
+                    <h2>Capabilities</h2>
+                    <ul class="benefit-list">
+                        <li>Finds actual definitions</li>
+                        <li>Full dependency graph</li>
+                        <li>Instant impact analysis</li>
+                        <li>JSON output for AI agents</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Feature Comparison -->
+    <section class="feature-comparison">
+        <h2 class="section-title">Feature Comparison</h2>
+        <div class="comp-grid">
+            <div class="comp-header"></div>
+            <div class="comp-header">grep</div>
+            <div class="comp-header srcnav">srcnav</div>
+            <div class="comp-row"><span>Finds definitions</span><span class="no">✗</span><span class="yes">✓</span></div>
+            <div class="comp-row"><span>Filters comments/strings</span><span class="no">✗</span><span class="yes">✓</span></div>
+            <div class="comp-row"><span>Impact analysis</span><span class="no">✗</span><span class="yes">✓</span></div>
+            <div class="comp-row"><span>Dependency graph</span><span class="no">✗</span><span class="yes">✓</span></div>
+            <div class="comp-row"><span>JSON output</span><span class="no">✗</span><span class="yes">✓</span></div>
+            <div class="comp-row"><span>AI agent ready</span><span class="no">✗</span><span class="yes">✓</span></div>
+        </div>
+    </section>
+
+    <!-- Efficiency -->
+    <section class="efficiency">
+        <h2 class="section-title">Why This Matters</h2>
+        <div class="efficiency-visual">
+            <div class="eff-chart">
+                <h3>Signal-to-Noise (TypeScript codebase)</h3>
+                <div class="chart-bars">
+                    <div class="chart-item">
+                        <div class="chart-label">grep "create"</div>
+                        <div class="bar-container"><div class="bar linear" style="height: 100%"></div></div>
+                        <div class="bar-value">20,077 matches</div>
+                    </div>
+                    <div class="chart-item">
+                        <div class="chart-label">srcnav</div>
+                        <div class="bar-container"><div class="bar srcnav" style="height: 5%"></div></div>
+                        <div class="bar-value">50 definitions</div>
+                    </div>
+                </div>
+                <p class="chart-note">400x better signal-to-noise</p>
+            </div>
+            <div class="eff-stats">
+                <div class="eff-stat"><span class="eff-num bad">400x</span><span class="eff-label">Signal-to-noise</span></div>
+                <div class="eff-stat"><span class="eff-num good">93x</span><span class="eff-label">Faster queries</span></div>
+                <div class="eff-stat"><span class="eff-num good">213K</span><span class="eff-label">Impact analysis</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <h2 class="section-title">What AI Can Now Do</h2>
+        <div class="use-case-grid">
+            <div class="use-case-card">
+                <h3>Safe Refactoring</h3>
+                <p>AI knows every caller. Updates all references correctly.</p>
+            </div>
+            <div class="use-case-card">
+                <h3>Find Real Bugs</h3>
+                <p>Trace data flow end-to-end. Find missing validation.</p>
+            </div>
+            <div class="use-case-card">
+                <h3>Map Architecture</h3>
+                <p>Full dependency graph. Find circular deps.</p>
+            </div>
+            <div class="use-case-card">
+                <h3>True Understanding</h3>
+                <p>Instantly find any function, see all usages.</p>
+            </div>
+            <div class="use-case-card">
+                <h3>Context Efficiency</h3>
+                <p>95% less context tokens. 25x cheaper AI.</p>
+            </div>
+            <div class="use-case-card">
+                <h3>Scale Up</h3>
+                <p>50k files? No problem. Any codebase size.</p>
+            </div>
+        </div>
+    </section>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <h2 class="section-title">Why srcnav?</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-title">grep</div>
+                <div class="pricing-content">
+                    <p>Fast string matching</p>
+                    <p>Good for TODO comments</p>
+                    <p>Works everywhere</p>
+                </div>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-badge">FOR AI AGENTS</div>
+                <div class="pricing-title">srcnav</div>
+                <div class="pricing-content">
+                    <p>Semantic code understanding</p>
+                    <p>JSON output for AI</p>
+                    <p>Impact analysis</p>
+                    <p>400x better signal-to-noise</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages -->
+    <section class="languages">
+        <h2 class="section-title">Supported Languages</h2>
+        <div class="languages-grid">
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/python/python.png" alt="Python" class="lang-icon"><span class="lang-name">Python</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/rust/rust.png" alt="Rust" class="lang-icon"><span class="lang-name">Rust</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/go/go.png" alt="Go" class="lang-icon"><span class="lang-name">Go</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/java/java.png" alt="Java" class="lang-icon"><span class="lang-name">Java</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/c/c.png" alt="C" class="lang-icon"><span class="lang-name">C</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/cpp/cpp.png" alt="C++" class="lang-icon"><span class="lang-name">C++</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/typescript/typescript.png" alt="TypeScript" class="lang-icon"><span class="lang-name">TypeScript</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png" alt="JavaScript" class="lang-icon"><span class="lang-name">JavaScript</span></div>
+        </div>
+    </section>
+
+    <!-- Detailed Who For -->
+    <section class="who-for">
+        <h2 class="section-title">Who is srcnav for?</h2>
+        <div class="who-for-grid">
+            <div class="who-for-card">
+                <h3>Vibe Coders</h3>
+                <p>Takes the Vibes out of vibe coding. Give your AI real codebase understanding, not just pattern matching.</p>
+            </div>
+            <div class="who-for-card">
+                <h3>Software Developers</h3>
+                <p>Full codebase intelligence for professional development. Safe refactors, instant impact analysis.</p>
+            </div>
+            <div class="who-for-card">
+                <h3>AI Agent Builders</h3>
+                <p>Add semantic code navigation to your coding agents. JSON output ready for AI consumption.</p>
+            </div>
+            <div class="who-for-card">
+                <h3>DevTools Companies</h3>
+                <p>Power your product with semantic search. Fast, accurate, scales to any codebase.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta">
+        <h2>Get Started with <span class="brand-highlight">srcnav</span></h2>
+        <p>Built for AI agents. Works with Python, Rust, Go, Java, C, C++, TypeScript, JavaScript.</p>
+        <a href="mailto:djtinkers365@protonmail.com" class="btn">Request Access</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 <span class="brand-highlight">srcnav</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
