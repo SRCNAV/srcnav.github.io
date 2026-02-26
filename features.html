@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>srcnav — Features</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-logo"><span class="brand">srcnav</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features.html" class="active">Features</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="about.html">About</a>
+            <a href="#download" class="btn-nav">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="features-hero">
+        <h1>Complete Command Reference</h1>
+        <p>Every command srcnav provides for AI code navigation.</p>
+    </section>
+
+    <!-- index -->
+    <section class="command-section">
+        <div class="command-header">
+            <h2>index</h2>
+            <p class="command-desc">Build or rebuild the index for a codebase.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav index -p /path/to/project</code>
+                <code>srcnav index -p . --force</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>Building: Indexing /path/to/project...
+Found 4435 files (max: 50000)
+Parsed 61583 items in 4.13s
+Parsed 7024 imports in 2.70s
+Done: 61583 items, 7024 imports indexed in 7.97s</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- status -->
+    <section class="command-section alt-bg">
+        <div class="command-header">
+            <h2>status</h2>
+            <p class="command-desc">Show index status for a project.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav status -p /path/to/project</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>Status: Index found at "/path/.srcnav-cpp.db"
+  Items: 27000</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- stats -->
+    <section class="command-section">
+        <div class="command-header">
+            <h2>stats</h2>
+            <p class="command-desc">Show codebase statistics. Available in human-readable or JSON format.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav stats -p /path/to/project</code>
+                <code>srcnav stats -p /path/to/project --json</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>==================================================
+Stats for: /path/to/project
+==================================================
+  3925 files, 61583 items
+
+By Kind:
+  constant             33992
+  function             11916
+  variable             6050
+  method               5702
+  class                1771
+  arrowfunction        1578
+  typealias            430
+  interface            122
+  enum                 22
+
+By Visibility:
+  private              56395
+  export               5188</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- find -->
+    <section class="command-section alt-bg">
+        <div class="command-header">
+            <h2>find</h2>
+            <p class="command-desc">Find items by name pattern (regex supported). Filter by kind and visibility.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav find "function_name" -p /path</code>
+                <code>srcnav find "av.*open.*" -p /path</code>
+                <code>srcnav find ".*" -p /path --kind function</code>
+                <code>srcnav find ".*" -p /path --kind struct</code>
+                <code>srcnav find ".*" -p /path --visibility public</code>
+                <code>srcnav find "func" -p /path --limit 10</code>
+                <code>srcnav find "func" -p /path --json</code>
+                <code>srcnav find "func" -p /path -c</code>
+                <code>srcnav find "func" -p /path --brief</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>private function createElement [/workspaces/DEVELOPMENT-2/3rdparty/react/packages/react/src/jsx/ReactJSXElement.js:610:8]
+private function createElementsInspectPanel [/workspaces/DEVELOPMENT-2/3rdparty/react/packages/react-devtools-extensions/src/main/index.js:294:1]
+
+5 items found (43ms)</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- query search -->
+    <section class="command-section">
+        <div class="command-header">
+            <h2>query search</h2>
+            <p class="command-desc">Search files by name pattern.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav query search "avcodec" -p /path</code>
+                <code>srcnav query search "avcodec" -p /path --summary</code>
+                <code>srcnav query search "avcodec" -p /path --limit 1-20</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>Found 23 files in 12ms
+src/auth/login.ts
+src/auth/middleware.ts
+src/api/auth-guard.ts</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- query context -->
+    <section class="command-section alt-bg">
+        <div class="command-header">
+            <h2>query context</h2>
+            <p class="command-desc">Get all symbols defined in a file.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav query context "libavcodec/avcodec.h" -p /path</code>
+                <code>srcnav query context "avcodec.h" -p /path --kind function</code>
+                <code>srcnav query context "avcodec.h" -p /path --summary</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>Total: 296 items
+By Kind: 137 constant, 48 function, 46 struct, 41 enum...
+By Visibility: 296 default
+
+formatDate (function) — line 12
+formatCurrency (function) — line 28</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- query imports-of -->
+    <section class="command-section">
+        <div class="command-header">
+            <h2>query imports-of</h2>
+            <p class="command-desc">Find files that include/import a given file.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav query imports-of "libavcodec/avcodec.h" -p /path</code>
+                <code>srcnav query imports-of "avcodec.h" -p /path --limit 1-20</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>Found 47 files that import avcodec.h
+src decoder/decoder.cpp
+src encoder/encoder.cpp
+src utils/format.cpp</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- query dependencies-of -->
+    <section class="command-section alt-bg">
+        <div class="command-header">
+            <h2>query dependencies-of</h2>
+            <p class="command-desc">Find files that a given file includes/imports.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav query dependencies-of "main.cpp" -p /path</code>
+                <code>srcnav query dependencies-of "main.cpp" -p /path --limit 1-20</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>15 files depend on this file
+src/components/Price.tsx
+src/services/billing.ts</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- query path -->
+    <section class="command-section">
+        <div class="command-header">
+            <h2>query path</h2>
+            <p class="command-desc">Find include/import path between two files.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav query path "libavcodec/avcodec.h" "libavformat/avformat.h" -p /path</code>
+                <code>srcnav query path "a.h" "b.h" -p /path --format mermaid</code>
+                <code>srcnav query path "a.h" "b.h" -p /path --format dot</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>Include path from avcodec.h to avformat.h:
+avcodec.h -> common.h -> utils.h -> avformat.h</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- analyze context -->
+    <section class="command-section alt-bg">
+        <div class="command-header">
+            <h2>analyze context</h2>
+            <p class="command-desc">Show symbol and surrounding context from the same file.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav analyze context "avcodec_open2" -p /path</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>Symbol: avcodec_open2 (function)
+File: libavcodec/utils.c:234
+
+Context:
+int avcodec_open2(AVCodecContext *ctx, const AVCodec *codec, AVDictionary **options) {
+    // function implementation...
+}</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- analyze deps -->
+    <section class="command-section">
+        <div class="command-header">
+            <h2>analyze deps</h2>
+            <p class="command-desc">Show type dependencies (upstream/downstream).</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav analyze deps "AVCodecContext" -p /path</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>Type: AVCodecContext
+Upstream dependencies:
+  - AVCodec (type)
+  - AVDictionary (type)
+Downstream dependencies:
+  - DecoderContext (type)
+  - EncoderContext (type)</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- analyze impact -->
+    <section class="command-section featured">
+        <div class="command-header">
+            <span class="feature-tag">Most Powerful</span>
+            <h2>analyze impact</h2>
+            <p class="command-desc">Trace downstream impact of a symbol across multiple levels. This is critical for AI agents to know what will break before modifying code.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav analyze impact "AVCodecContext" -p /path</code>
+                <code>srcnav analyze impact "AVCodecContext" -p /path --summary</code>
+                <code>srcnav analyze impact "AVCodecContext" -p /path -d 1</code>
+                <code>srcnav analyze impact "AVCodecContext" -p /path --kind function</code>
+                <code>srcnav analyze impact "AVCodecContext" -p /path -d 1 --limit 1-20</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>Total downstream: 375,443 items
+Level 1: 334 items
+Level 2: 332 items
+Level 3: 14,937 items
+
+Level 1 (direct users):
+  decoder.c:45 - decode_frame (function)
+  encoder.c:32 - encode_frame (function)
+  ...</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- batch -->
+    <section class="command-section alt-bg">
+        <div class="command-header">
+            <h2>batch</h2>
+            <p class="command-desc">Run multiple queries in parallel for efficiency.</p>
+        </div>
+        <div class="command-content">
+            <div class="command-usage">
+                <h3>Usage</h3>
+                <code>srcnav batch find "func1" "func2" "func3" -p /path</code>
+                <code>srcnav batch search "term1" "term2" -p /path</code>
+            </div>
+            <div class="command-example">
+                <h3>Example Output</h3>
+                <pre>[func1] Found 12 items in 23ms
+[func2] Found 5 items in 18ms
+[func3] Found 8 items in 21ms</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Output Formats Overview -->
+    <section class="formats-overview">
+        <h2>Output Formats</h2>
+        <p class="formats-intro">All commands support multiple output formats for AI consumption.</p>
+        
+        <div class="formats-table">
+            <div class="format-row">
+                <div class="format-flag">--json</div>
+                <div class="format-desc">Structured JSON data for programmatic use</div>
+            </div>
+            <div class="format-row">
+                <div class="format-flag">-c</div>
+                <div class="format-desc">Compact: fn:name@file:line</div>
+            </div>
+            <div class="format-row">
+                <div class="format-flag">--brief</div>
+                <div class="format-desc">Brief: KIND name file:line</div>
+            </div>
+            <div class="format-row">
+                <div class="format-flag">--names-only</div>
+                <div class="format-desc">Just symbol names</div>
+            </div>
+            <div class="format-row">
+                <div class="format-flag">--format mermaid</div>
+                <div class="format-desc">Mermaid diagram for visualization</div>
+            </div>
+            <div class="format-row">
+                <div class="format-flag">--format dot</div>
+                <div class="format-desc">Graphviz DOT format</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limit Syntax -->
+    <section class="limit-syntax">
+        <h2>Limit Range Syntax</h2>
+        <p class="limit-intro">The --limit flag accepts three formats:</p>
+        
+        <div class="limit-table">
+            <div class="limit-row">
+                <div class="limit-format">Number</div>
+                <div class="limit-example">--limit 10</div>
+                <div class="limit-meaning">First 10 items (1-10)</div>
+            </div>
+            <div class="limit-row">
+                <div class="limit-format">Range</div>
+                <div class="limit-example">--limit 1-50</div>
+                <div class="limit-meaning">Items 1-50</div>
+            </div>
+            <div class="limit-row">
+                <div class="limit-format">Open range</div>
+                <div class="limit-example">--limit 51-</div>
+                <div class="limit-meaning">51 to end</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages -->
+    <section class="languages-section">
+        <h2>Supported Languages</h2>
+        <div class="languages-grid">
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/python/python.png" alt="Python" class="lang-icon"><span class="lang-name">Python</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/rust/rust.png" alt="Rust" class="lang-icon"><span class="lang-name">Rust</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/go/go.png" alt="Go" class="lang-icon"><span class="lang-name">Go</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/java/java.png" alt="Java" class="lang-icon"><span class="lang-name">Java</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/c/c.png" alt="C" class="lang-icon"><span class="lang-name">C</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/cpp/cpp.png" alt="C++" class="lang-icon"><span class="lang-name">C++</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/typescript/typescript.png" alt="TypeScript" class="lang-icon"><span class="lang-name">TypeScript</span></div>
+            <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png" alt="JavaScript" class="lang-icon"><span class="lang-name">JavaScript</span></div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="download" class="cta">
+        <h2>Get Started with <span class="brand-highlight">srcnav</span></h2>
+        <p>Open source CLI. Better code navigation for AI agents.</p>
+        <a href="mailto:djtinkers365@protonmail.com" class="btn">Request Access</a>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> <span class="brand-highlight">srcnav</span></p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

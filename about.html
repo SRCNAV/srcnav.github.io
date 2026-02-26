@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>srcnav — About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="about.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-logo"><span class="brand">srcnav</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="use-cases.html">Use Cases</a>
+            <a href="about.html" class="active">About</a>
+            <a href="#contact" class="btn-nav">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="features-hero">
+        <h1>About srcnav</h1>
+        <p>Giving AI agents the code understanding they need.</p>
+    </section>
+
+    <!-- Our Story -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>Why srcnav?</h2>
+            <p>I kept going in circles trying to build and debug codebases. I tried a coding agent for the first time and tried to give it a real-world project. It wasn't able to tackle it in a timely manner.</p>
+            <p>The problem wasn't the AI — it was the tools. The AI could only use grep, which returns thousands of text matches for every query. It couldn't understand code structure, find actual definitions, or trace dependencies.</p>
+            <p>So I built srcnav. A tool that gives AI agents the code understanding they need to actually be useful.</p>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>Our Mission</h2>
+            <p>srcnav exists because AI coding agents need more than just text search. They need to understand code structure — where functions are defined, what depends on what, and what will break when something changes.</p>
+            <p>Traditional tools like grep are great for humans, but they return thousands of matches for simple queries. srcnav provides precise, semantic code navigation that enables AI agents to make informed decisions about code changes.</p>
+        </div>
+    </section>
+
+    <!-- The Problem -->
+    <section class="about-section alt-bg">
+        <div class="about-content">
+            <h2>The Problem</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🔍</div>
+                    <h3>Too Many Results</h3>
+                    <p>Searching for "createUser" returns thousands of matches — strings, comments, usage — everything except the actual definition.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⏱</div>
+                    <h3>Slow at Scale</h3>
+                    <p>Text search gets slower with larger codebases. AI agents can't afford to wait seconds for every search.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🤖</div>
+                    <h3>No Context</h3>
+                    <p>Traditional search doesn't understand code relationships. AI agents can't determine impact or dependencies.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💸</div>
+                    <h3>Expensive Context</h3>
+                    <p>Without precise code navigation, AI agents load entire files, wasting tokens and money.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Solution -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>The Solution</h2>
+            <p>srcnav indexes your codebase once, then provides millisecond-speed queries that understand code structure:</p>
+            <div class="solution-stats">
+                <div class="stat-box">
+                    <div class="stat-value">1,143x</div>
+                    <div class="stat-label">More precise</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">17x</div>
+                    <div class="stat-label">Faster queries</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">95%</div>
+                    <div class="stat-label">Less context</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">50k+</div>
+                    <div class="stat-label">Files supported</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Languages -->
+    <section class="about-section alt-bg">
+        <div class="about-content centered">
+            <h2>Supported Languages</h2>
+            <p>srcnav works with the most popular programming languages.</p>
+            <div class="languages-grid">
+                <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/python/python.png" alt="Python" class="lang-icon"><span class="lang-name">Python</span></div>
+                <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/rust/rust.png" alt="Rust" class="lang-icon"><span class="lang-name">Rust</span></div>
+                <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/go/go.png" alt="Go" class="lang-icon"><span class="lang-name">Go</span></div>
+                <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/java/java.png" alt="Java" class="lang-icon"><span class="lang-name">Java</span></div>
+                <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/c/c.png" alt="C" class="lang-icon"><span class="lang-name">C</span></div>
+                <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/cpp/cpp.png" alt="C++" class="lang-icon"><span class="lang-name">C++</span></div>
+                <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/typescript/typescript.png" alt="TypeScript" class="lang-icon"><span class="lang-name">TypeScript</span></div>
+                <div class="language-card"><img src="https://raw.githubusercontent.com/github/explore/main/topics/javascript/javascript.png" alt="JavaScript" class="lang-icon"><span class="lang-name">JavaScript</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>Open Source</h2>
+            <p>srcnav is open source. We believe code navigation tools should be accessible to everyone.</p>
+            <div class="oss-info">
+                <div class="oss-card">
+                    <h3>CLI Tool</h3>
+                    <p>Fast, terminal-based interface for direct use or scripting.</p>
+                </div>
+                <div class="oss-card">
+                    <h3>Library</h3>
+                    <p>Embed srcnav in your own tools and products.</p>
+                </div>
+                <div class="oss-card">
+                    <h3>API</h3>
+                    <p>JSON output designed for AI agent consumption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="cta">
+        <h2>Get in Touch</h2>
+        <p>Interested in srcnav? Have questions? Want to contribute?</p>
+        <a href="mailto:djtinkers365@protonmail.com" class="btn">Contact Us</a>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> <span class="brand-highlight">srcnav</span></p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

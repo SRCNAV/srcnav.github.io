@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>srcnav — Use Cases</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="use-cases.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-logo"><span class="brand">srcnav</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="use-cases.html" class="active">Use Cases</a>
+            <a href="about.html">About</a>
+            <a href="#download" class="btn-nav">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="features-hero">
+        <h1>What AI Agents Can Do with srcnav</h1>
+        <p>Real-world use cases for code navigation in AI-powered development.</p>
+    </section>
+
+    <!-- Use Case: Safe Refactoring -->
+    <section class="use-case-section">
+        <div class="use-case-content">
+            <div class="use-case-number">01</div>
+            <div class="use-case-text">
+                <h2>Safe Refactoring</h2>
+                <p class="use-case-tagline">Know what will break before you change anything.</p>
+                <p>When an AI agent needs to rename a function or change a signature, it must know every place that calls it. srcnav's impact analysis traces all dependencies, showing:</p>
+                <ul class="use-case-list">
+                    <li>All direct callers</li>
+                    <li>Indirect dependencies</li>
+                    <li>Test files that use the function</li>
+                    <li>Related files that might be affected</li>
+                </ul>
+                <div class="use-case-command">
+                    <code>srcnav analyze impact "updateUser" -p /project</code>
+                </div>
+            </div>
+            <div class="use-case-visual">
+                <div class="impact-visual">
+                    <div class="impact-center">updateUser</div>
+                    <div class="impact-ring ring-1">
+                        <span>12 callers</span>
+                    </div>
+                    <div class="impact-ring ring-2">
+                        <span>34 indirect</span>
+                    </div>
+                    <div class="impact-ring ring-3">
+                        <span>8 tests</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Case: Bug Finding -->
+    <section class="use-case-section alt-bg">
+        <div class="use-case-content reverse">
+            <div class="use-case-number">02</div>
+            <div class="use-case-text">
+                <h2>Find Real Bugs</h2>
+                <p class="use-case-tagline">Trace data flow to find missing validation.</p>
+                <p>AI agents can trace how data flows through a codebase to find security issues, bugs, or missing validation:</p>
+                <ul class="use-case-list">
+                    <li>Find where user input enters the system</li>
+                    <li>Trace all paths to database queries</li>
+                    <li>Identify missing sanitization</li>
+                    <li>Find unhandled edge cases</li>
+                </ul>
+                <div class="use-case-command">
+                    <code>srcnav analyze deps "UserInput" -p /project</code>
+                </div>
+            </div>
+            <div class="use-case-visual">
+                <div class="flow-visual">
+                    <div class="flow-node">User Input</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">Validation</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node highlight">Database</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Case: Architecture Understanding -->
+    <section class="use-case-section">
+        <div class="use-case-content">
+            <div class="use-case-number">03</div>
+            <div class="use-case-text">
+                <h2>Map Architecture</h2>
+                <p class="use-case-tagline">Understand code structure at any scale.</p>
+                <p>Before making changes, AI agents need to understand the codebase architecture:</p>
+                <ul class="use-case-list">
+                    <li>Find all dependencies of a module</li>
+                    <li>Detect circular dependencies</li>
+                    <li>Identify unused files or dead code</li>
+                    <li>Understand import relationships</li>
+                </ul>
+                <div class="use-case-command">
+                    <code>srcnav query dependencies-of "src/auth/index.ts" -p /project</code>
+                </div>
+            </div>
+            <div class="use-case-visual">
+                <div class="graph-visual">
+                    <div class="graph-node main">auth/</div>
+                    <div class="graph-line"></div>
+                    <div class="graph-row">
+                        <div class="graph-node">login.ts</div>
+                        <div class="graph-node">middleware.ts</div>
+                        <div class="graph-node">oauth.ts</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Case: Code Review -->
+    <section class="use-case-section alt-bg">
+        <div class="use-case-content reverse">
+            <div class="use-case-number">04</div>
+            <div class="use-case-text">
+                <h2>Intelligent Code Review</h2>
+                <p class="use-case-tagline">AI-powered analysis of code changes.</p>
+                <p>AI agents can automatically review code by understanding its impact:</p>
+                <ul class="use-case-list">
+                    <li>Check if changes affect critical paths</li>
+                    <li>Identify missing tests for new code</li>
+                    <li>Find similar patterns in the codebase</li>
+                    <li>Suggest related files to review</li>
+                </ul>
+                <div class="use-case-command">
+                    <code>srcnav query search "auth" -p /project --limit 1-20</code>
+                </div>
+            </div>
+            <div class="use-case-visual">
+                <div class="review-visual">
+                    <div class="review-header">Code Review</div>
+                    <div class="review-item">
+                        <span class="review-status warning">⚠</span>
+                        <span>affects 12 files</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-status ok">✓</span>
+                        <span>has test coverage</span>
+                    </div>
+                    <div class="review-item">
+                        <span class="review-status info">i</span>
+                        <span>similar patterns found</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Case: Context Efficiency -->
+    <section class="use-case-section">
+        <div class="use-case-content">
+            <div class="use-case-number">05</div>
+            <div class="use-case-text">
+                <h2>Reduce AI Context</h2>
+                <p class="use-case-tagline">95% less context. 25x cheaper AI calls.</p>
+                <p>Instead of dumping entire files into AI context, agents can use srcnav to find and include only relevant code:</p>
+                <ul class="use-case-list">
+                    <li>Find exact function definitions</li>
+                    <li>Get only relevant imports</li>
+                    <li>Include only related test files</li>
+                    <li>Reduce token usage dramatically</li>
+                </ul>
+                <div class="use-case-command">
+                    <code>srcnav query context "src/utils/format.ts" -p /project --kind function</code>
+                </div>
+            </div>
+            <div class="use-case-visual">
+                <div class="context-visual">
+                    <div class="context-bar old">
+                        <span>Without srcnav</span>
+                        <strong>50,000 tokens</strong>
+                    </div>
+                    <div class="context-bar new">
+                        <span>With srcnav</span>
+                        <strong>2,500 tokens</strong>
+                    </div>
+                    <div class="context-savings">95% savings</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Case: Large Codebases -->
+    <section class="use-case-section alt-bg">
+        <div class="use-case-content reverse">
+            <div class="use-case-number">06</div>
+            <div class="use-case-text">
+                <h2>Scale to Any Codebase</h2>
+                <p class="use-case-tagline">Tested on 50,000+ files. Works instantly.</p>
+                <p>srcnav is designed for massive codebases that would overwhelm traditional tools:</p>
+                <ul class="use-case-list">
+                    <li>Index 50k+ files in seconds</li>
+                    <li>Query returns in milliseconds</li>
+                    <li>Incremental updates on file changes</li>
+                    <li>Works with any language</li>
+                </ul>
+                <div class="use-case-command">
+                    <code>srcnav stats -p /massive-project</code>
+                </div>
+            </div>
+            <div class="use-case-visual">
+                <div class="scale-visual">
+                    <div class="scale-stat">
+                        <div class="scale-number">50k+</div>
+                        <div class="scale-label">Files</div>
+                    </div>
+                    <div class="scale-stat">
+                        <div class="scale-number">~8s</div>
+                        <div class="scale-label">Index Time</div>
+                    </div>
+                    <div class="scale-stat">
+                        <div class="scale-number">&lt;100ms</div>
+                        <div class="scale-label">Query Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="download" class="cta">
+        <h2>Ready to give your AI agents <span class="brand-highlight">real code understanding</span>?</h2>
+        <p>Get started with srcnav today.</p>
+        <a href="mailto:djtinkers365@protonmail.com" class="btn">Request Access</a>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> <span class="brand-highlight">srcnav</span></p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
